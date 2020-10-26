@@ -4,12 +4,14 @@ const mockAPIResponse = require('./mockAPI.js')
 
 const app = express()
 
-app.use(express.static('src/client'))
+// Look for asset files in dist instead of client
+app.use(express.static('dist'))
 
 console.log(__dirname)
 
+// Home route is now using the index file from dist
 app.get('/', function (req, res) {
-    res.sendFile('/client/views/index.html', { root: __dirname + '/..' })
+    res.sendFile('dist/index.html')
 })
 
 // designates what port the app will listen to for incoming requests
